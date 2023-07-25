@@ -1,6 +1,7 @@
 import Search from "./components/search"
 import RegionFilter from "./components/RegionFilter"
-import Header from "./components/Header" 
+import Header from "./components/Header"
+import CountriesList from "./components/countriesList"
 function App() {
 
   return (
@@ -9,6 +10,7 @@ function App() {
       <Header/>
     <Search/>
     <RegionFilter/>
+    <CountriesList/>
     </section>
     </>
   )
