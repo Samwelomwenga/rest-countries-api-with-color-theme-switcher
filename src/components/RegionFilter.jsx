@@ -1,16 +1,18 @@
 import React from 'react'
 
 function RegionFilter() {
+  const regions = ['Africa', 'America', 'Asia', 'Europe', 'Oceania']
   return (
     <div>
-    <label className=' grid bg-blue-900 font-Nunito'>
-        <select className=' bg-dark-blue'>
-            {/* <label> Filter by Region</label> */}
-            <option value='Africa'>Africa</option>
-            <option value='America'>America</option>
-            <option value='Asia'>Asia</option>
-            <option value='Europe'>Europe</option>
-            <option value='Oceania'>Oceania</option>
+    <label className=' grid mb-8 bg-blue-900 font-Nunito'>
+        
+        <select className=' bg-dark-blue p-3 w-3/4'>
+            <option  value=''>Filter by Region</option>
+            {regions.map((region) => (
+            <option  value={region}>{region}</option>
+
+))}
+          
 
         </select>
     </label>
