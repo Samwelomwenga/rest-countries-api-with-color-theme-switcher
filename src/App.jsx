@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-    <section className=" bg-very-dark-blue-dm px-4">
+    <section className=" bg-very-dark-blue-dm px-4 text-white">
       <Header/>
     <Search/>
     <RegionFilter/>
