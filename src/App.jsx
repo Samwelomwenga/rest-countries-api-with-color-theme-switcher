@@ -2,6 +2,7 @@ import Search from "./components/search"
 import RegionFilter from "./components/RegionFilter"
 import Header from "./components/Header"
 import CountriesList from "./components/countriesList"
+import CountryDetailes from "./components/CountryDetailes"
 function App() {
 
   return (
@@ -11,6 +12,8 @@ function App() {
     <Search/>
     <RegionFilter/>
     <CountriesList/>
+    {/* <CountryDetailes/>   */}
+
     </section>
     </>
   )
