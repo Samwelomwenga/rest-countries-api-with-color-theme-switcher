@@ -8,8 +8,8 @@ function RegionFilter() {
         
         <select className=' bg-dark-blue p-3 w-3/4'>
             <option  value=''>Filter by Region</option>
-            {regions.map((region) => (
-            <option  value={region}>{region}</option>
+            {regions.map((region,index) => (
+            <option key={index}  value={region}>{region}</option>
 
 ))}
           
