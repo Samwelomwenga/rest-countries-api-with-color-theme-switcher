@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import fetchCountries from "./api/fetchCountries";
+import FetchCountries from "./api/FetchCountries";
 import Search from "./components/Search"
 import RegionFilter from "./components/RegionFilter"
 import Header from "./components/Header"
@@ -16,7 +16,7 @@ function App() {
       setLoading(true);
       setError(null);
       try {
-        const data = await fetchCountries();
+        const data = await FetchCountries();
         if (!ignore) {
           console.log(ignore);
           setCountries(data);
@@ -48,7 +48,7 @@ function App() {
     <>
     <section className=" bg-very-dark-blue-dm px-4 text-white">
       <Header/>
-    <Search/>
+    <Search countries={countries} setCountries={setCountries}/>
     <RegionFilter/>
     <CountriesList countries={countries}/>
     {/* <CountryDetailes/>   */}
