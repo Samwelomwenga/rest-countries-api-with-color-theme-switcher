@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '../components/Header'
 import CountryDetailes from '../components/CountryDetailes'
-const CountryDetailesPage = () => {
+const CountryDetailesPage = ({countries,setCountries}) => {
   return (
     <div>
         <Header/>
