@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import FetchCountries from "./api/FetchCountries";
-import Search from "./components/Search"
-import RegionFilter from "./components/RegionFilter"
-import Header from "./components/Header"
-import CountriesList from "./components/CountriesList"
+import Home from "./routes/Home";
+import { Route,Routes } from "react-router-dom";
 // import CountryDetailes from "./components/CountryDetailes"
 function App() {
   const [countries, setCountries] = useState([]);
@@ -46,14 +44,12 @@ function App() {
 
   return (
     <>
-    <section className=" bg-very-dark-blue-dm px-4 text-white">
-      <Header/>
-    <Search countries={countries} setCountries={setCountries}/>
-    <RegionFilter countries={countries} setCountries={setCountries}/>
-    <CountriesList countries={countries}/>
-    {/* <CountryDetailes/>   */}
+    <Routes>
+      <Route path="/" element={<Home countries={countries} setCountries={setCountries}/>}/>
 
-    </section>
+
+
+    </Routes>
     </>
   )
 }
