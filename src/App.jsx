@@ -49,7 +49,7 @@ function App() {
     <section className=" bg-very-dark-blue-dm px-4 text-white">
       <Header/>
     <Search countries={countries} setCountries={setCountries}/>
-    <RegionFilter/>
+    <RegionFilter countries={countries} setCountries={setCountries}/>
     <CountriesList countries={countries}/>
     {/* <CountryDetailes/>   */}
 
