@@ -3,7 +3,7 @@ import Header from '../components/Header'
 import CountryDetailes from '../components/CountryDetailes'
 const CountryDetailesPage = ({countries,setCountries}) => {
   return (
-    <div>
+    <div className=' bg-very-dark-blue-dm text-white text-base'>
         <Header/>
         <CountryDetailes/>
         
