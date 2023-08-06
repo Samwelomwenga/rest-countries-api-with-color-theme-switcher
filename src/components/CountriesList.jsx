@@ -1,26 +1,26 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import { useRestCountriesAPI } from "../hooks/useRestCountriesAPI";
 function CountriesList() {
-const {listOfCountries,setListOfCountries}=useState([]);
-const {fetchCountries,countries,loading,error}=useRestCountriesAPI(
+// const {listOfCountries,setListOfCountries}=useState([]);
+const {countries}=useRestCountriesAPI(
   {method: 'GET',
   url: '/all',
   params: {fields: 'name;capital;region;population;flags.svg;'}
 }
 );
-useEffect(()=>{
-  if(countries){
-    setListOfCountries(countries);
-    console.log(countries);
-  }
-})
+// useEffect(()=>{
+//   if(countries){
+//     setListOfCountries(countries);
+//     console.log(countries);
+//   }
+// },[countries])
 
 
 
  
   return (
     <>
-      {listOfCountries.map((country) => (
+      {countries.map((country) => (
         <div className=" bg-dark-blue mb-7 rounded-md mx-10 shadow-md " key={country.name.common}>
           <img className=" rounded-t-md" src={country.flags.svg} alt={country.name} />
           <h2 className=" py-3 pl-5 font-extrabold">{country.name.common}</h2>

@@ -1,7 +1,7 @@
 import  { useState, useEffect } from 'react'
 import axios from 'axios'
 axios.defaults.baseURL = 'https://restcountries.com/v3.1'
-export const useRestCountriesAPI = (url) => {
+export const useRestCountriesAPI = (axiosParams) => {
     const [countries, setCountries] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const fetchCountries= async () =>{
     };
     useEffect(()=>{
         fetchCountries();
-    },[]);
+    },[axiosParams]);
 }
   return{countries, error, loading,fetchCountries};
 };
