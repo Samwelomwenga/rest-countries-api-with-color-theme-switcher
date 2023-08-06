@@ -1,18 +1,19 @@
-import React, {useState } from 'react'
+import { useState } from "react";
 
-function RegionFilter({countries,setCountries}) {
+function RegionFilter({setCountryList}) {
 const [selectedRegion, setSelectedRegion] = useState('');
 
 const handleRegionChange = (event) => {
   const selectedRegionValue = event.target.value;
-const filterdRegion =countries.filter((country)=>{
-return country.region.toLowerCase().includes(selectedRegionValue.toLowerCase())
+setSelectedRegion(selectedRegionValue.toLowerCase());
 }
-)
-setSelectedRegion(selectedRegionValue);
-setCountries(filterdRegion)
-
-}
+// useEffect(()=>{
+//   const fetchCountriesByRegion= async (selectedRegion) =>{
+// const response = await axios.get(`https://restcountries.com/v3.1/region/${selectedRegion}`);
+// setCountryList(response.data);
+// }
+// fetchCountriesByRegion(selectedRegion);
+// },[selectedRegion])
 
   const regions = [{
     name: 'Africa',
