@@ -1,23 +1,13 @@
-// import React, { useState, useEffect } from "react";
 import { useRestCountriesAPI } from "../hooks/useRestCountriesAPI";
 function CountriesList() {
-// const {listOfCountries,setListOfCountries}=useState([]);
-const {countries}=useRestCountriesAPI(
-  {method: 'GET',
+const axiosParams={
+  method: 'GET',
   url: '/all',
   params: {fields: 'name;capital;region;population;flags.svg;'}
 }
+const {countries}=useRestCountriesAPI(axiosParams
 );
-// useEffect(()=>{
-//   if(countries){
-//     setListOfCountries(countries);
-//     console.log(countries);
-//   }
-// },[countries])
 
-
-
- 
   return (
     <>
       {countries.map((country) => (

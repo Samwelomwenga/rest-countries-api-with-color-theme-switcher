@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react'
+import  { useState} from 'react'
 import axios from 'axios'
 axios.defaults.baseURL = 'https://restcountries.com/v3.1'
 export const useRestCountriesAPI = (axiosParams) => {
@@ -6,18 +6,18 @@ export const useRestCountriesAPI = (axiosParams) => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 const fetchCountries= async () =>{
+    setLoading(true);
     try {
         const response = await axios.request(axiosParams);
         setCountries(response.data);
+        setError(null);
     } catch (error) {
         setError(error);
-        setLoading(false);
     }finally{
         setLoading(false);
-    };
-    useEffect(()=>{
-        fetchCountries();
-    },[axiosParams]);
+    }
 }
+
+    fetchCountries();
   return{countries, error, loading,fetchCountries};
 };
