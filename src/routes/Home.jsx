@@ -3,10 +3,12 @@ import axios from "axios";
 import Header from "../components/Header";
 import CountriesList from "../components/CountriesList";
 import Search from "../components/Search";
-// import RegionFilter from "../components/RegionFilter";
+import RegionFilter from "../components/RegionFilter";
+
 export const Home = () => {
   const [CountryList, setCountryList]=useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [region, setRegion] = useState("");
   const [error, setError] = useState(null);
    const [loading, setLoading] = useState(false);
 
@@ -23,6 +25,18 @@ export const Home = () => {
     
    }
 
+   const handleSearchRegion = (searchValue) => {
+    setRegion(searchValue);
+    if (!region) {
+      setCountryList(CountryList);
+    }else{
+      const filteredRegion = CountryList.filter((country) =>
+        country.region.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      setCountryList(filteredRegion);
+    }
+    
+   }
 
    useEffect(()=>{
     let ignore=false;
@@ -53,7 +67,7 @@ export const Home = () => {
       <Header />
       <section className=" px-4">
         <Search handleSearchCountries={handleSearchCountries}  searchTerm={searchTerm}/>
-        {/* <RegionFilter setCountryList={setCountryList} /> */}
+        <RegionFilter region={region} handleSearchRegion={handleSearchRegion} />
         <section className=" md:grid grid-cols-4">
           <CountriesList error={error} loading={loading} CountryList={CountryList}/>
         </section>

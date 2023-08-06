@@ -1,19 +1,8 @@
-import { useState } from "react";
+import PropsType from 'prop-types';
+function RegionFilter({region,handleSearchRegion}) {
 
-function RegionFilter({setCountryList}) {
-const [selectedRegion, setSelectedRegion] = useState('');
 
-const handleRegionChange = (event) => {
-  const selectedRegionValue = event.target.value;
-setSelectedRegion(selectedRegionValue.toLowerCase());
-}
-// useEffect(()=>{
-//   const fetchCountriesByRegion= async (selectedRegion) =>{
-// const response = await axios.get(`https://restcountries.com/v3.1/region/${selectedRegion}`);
-// setCountryList(response.data);
-// }
-// fetchCountriesByRegion(selectedRegion);
-// },[selectedRegion])
+
 
   const regions = [{
     name: 'Africa',
@@ -39,10 +28,10 @@ setSelectedRegion(selectedRegionValue.toLowerCase());
   return (
     <div>
     <label>
-        <select value={selectedRegion}  onChange={handleRegionChange} className=' bg-dark-blue mb-8 p-3 w-3/4 md:w-full md:mt-4'>
+        <select value={region}  onChange={(event)=>handleSearchRegion(event.target.value)} className=' bg-dark-blue mb-8 p-3 w-3/4 md:w-full md:mt-4'>
             <option value='' className=' hidden'>Filter by Region</option>
-            {regions.map((region) => (
-            <option key={region.code}  value={region.name}>{region.name}</option>
+            {regions.map((Region) => (
+            <option key={Region.code}  value={Region.name}>{Region.name}</option>
 
 ))}
           
@@ -51,6 +40,14 @@ setSelectedRegion(selectedRegionValue.toLowerCase());
     </label>
     </div>
   )
+}
+RegionFilter.propTypes = {
+  region: PropsType.string,
+  handleSearchRegion: PropsType.func,
+}
+RegionFilter.defaultProps = {
+  region: '',
+  handleSearchRegion: () => {},
 }
 
 export default RegionFilter
