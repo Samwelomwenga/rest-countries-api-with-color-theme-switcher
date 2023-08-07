@@ -10,7 +10,7 @@ const Router = () => {
                 element:<App/>
             },
             {
-                path:'/country',
+                path:'/:name',
                 element:<CountryDetailesPage/>
             }
         ]);

@@ -1,11 +1,14 @@
+import{Link}  from 'react-router-dom';
 import PropsType from 'prop-types';
 function CountriesList({ CountryList, error, loading}) {
+
   return (
     <>
     {loading && <p>Loading...</p>}
     {error && <p>Something went wrong: {error.message}</p>}
       {CountryList.map((country) => (
-        <div className=" bg-dark-blue mb-7 rounded-md mx-10 shadow-md " key={country.name.common}>
+        <Link key={country.name.common} to={`/{country.name.common}`}>
+        <div className=" bg-dark-blue mb-7 rounded-md mx-10 shadow-md " >
           <img className=" rounded-t-md" src={country.flags?.svg} alt={country.name} />
           <h2 className=" py-3 pl-5 font-extrabold">{country.name.common}</h2>
          <div className=" grid gap-0.5 pb-9 pl-5">
@@ -14,6 +17,7 @@ function CountriesList({ CountryList, error, loading}) {
           <p>Capital:{' '}<span className=" text-sm text-very-light-grey">{country.capital}</span></p>
          </div>
         </div>
+        </Link>
       ))}
     </>
   );
