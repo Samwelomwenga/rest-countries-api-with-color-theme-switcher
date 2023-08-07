@@ -60,10 +60,10 @@ const CountryDetailes = () => {
           <ul className=" grid gap-1.5 mb-5">
             <li>
               Native Name:
-              <span className="pl-1">{item.name.nativeName.aym.common}</span>
+              <span className="pl-1">{Object.values(item.name.nativeName)[0].common}</span>
             </li>
             <li>
-              Population:<span className="pl-1">{item.population}</span>
+              Population:<span className="pl-1">{item.population.toLocaleString()}</span>
             </li>
             <li>
               Region:<span className="pl-1">{item.region}</span>
@@ -80,12 +80,12 @@ const CountryDetailes = () => {
               Top Level Domain:<span className="pl-1">{item.tld[0]}</span>
             </li>
             <li>
-              Currencies:<span className="pl-1"></span>
+              Currencies:<span className="pl-1">{Object.values(item.currencies)[0].name}</span>
             </li>
             <li>
               Languages:
               <span className="pl-1">
-                {Object.values(item.languages).join(" , ")}
+                {Object.values(item.languages).join(", ")}
               </span>
             </li>
           </ul>
