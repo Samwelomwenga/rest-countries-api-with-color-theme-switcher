@@ -26,9 +26,9 @@ function RegionFilter({region,handleSearchRegion}) {
   },];
 
   return (
-    <div>
+    <div className='md:mr-10'>
     <label>
-        <select value={region}  onChange={(event)=>handleSearchRegion(event.target.value)} className=' bg-dark-blue mb-8 p-3 w-3/4 md:w-full md:mt-4'>
+        <select value={region}  onChange={(event)=>handleSearchRegion(event.target.value)} className=' bg-dark-blue mb-8 p-3 w-3/4 md:w-full  md:mt-4'>
             <option value='' className=' hidden'>Filter by Region</option>
             {regions.map((Region) => (
             <option key={Region.code}  value={Region.name}>{Region.name}</option>

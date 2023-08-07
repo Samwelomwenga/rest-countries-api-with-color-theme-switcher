@@ -66,8 +66,10 @@ export const Home = () => {
     <main className=" text-white bg-very-dark-blue-dm">
       <Header />
       <section className=" px-4">
-        <Search handleSearchCountries={handleSearchCountries}  searchTerm={searchTerm}/>
+       <div className=" md:flex justify-between">
+       <Search handleSearchCountries={handleSearchCountries}  searchTerm={searchTerm}/>
         <RegionFilter region={region} handleSearchRegion={handleSearchRegion} />
+       </div>
         <section className=" md:grid grid-cols-4">
           <CountriesList error={error} loading={loading} CountryList={CountryList}/>
         </section>
