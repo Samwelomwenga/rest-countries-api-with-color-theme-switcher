@@ -44,7 +44,7 @@ const CountryDetailes = () => {
       {loading && <p>Loading...</p>}
       {error && <p>Something went wrong: {error.message}</p>}
       {country.map((item) => (
-        <div className=" px-6 md:h-screen md:pt-8" key={item.name.common}>
+        <div className=" px-12  md:pt-8" key={item.name.common}>
           <button
             className=" bg-dark-blue py-1 px-4 rounded shadow-md text-center font-light my-8"
             onClick={handleButtonClick}
