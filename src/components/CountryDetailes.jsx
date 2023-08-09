@@ -19,7 +19,6 @@ const CountryDetailes = () => {
         const countryData = await response.json();
         if (!ignore) {
           setCountry(countryData);
-          console.log(countryData);
           setError(null);
         }
       } catch (error) {
