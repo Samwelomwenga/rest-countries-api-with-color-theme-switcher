@@ -46,7 +46,7 @@ const CountryDetailes = () => {
       {country.map((item) => (
         <div className=" px-12  md:pt-8" key={item.name.common}>
           <button
-            className=" bg-dark-blue py-1 px-4 rounded shadow-md text-center font-light my-8"
+            className="bg-white dark:bg-dark-blue py-1 px-4 rounded shadow-md text-center font-light my-8"
             onClick={handleButtonClick}
           >
             {" "}
@@ -107,7 +107,7 @@ const CountryDetailes = () => {
               {item.borders.map((border, index) => (
                 <li
                   key={index}
-                  className=" bg-dark-blue py-0.5 px-1 text-center shadow-md rounded md:py-1 md:px-5 md:my-0 md:mx-1"
+                  className=" bg-white dark:bg-dark-blue py-0.5 px-1 text-center shadow-md rounded md:py-1 md:px-5 md:my-0 md:mx-1"
                 >
                   <Link to={`/${item.name.common}`}>{border}</Link>
                 </li>

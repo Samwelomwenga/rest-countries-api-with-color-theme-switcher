@@ -63,7 +63,7 @@ export const Home = () => {
 
   },[])
   return (
-    <main className=" text-white bg-very-dark-blue-dm">
+    <main className=" text-very-dark-blue dark:text-white bg-very-light-grey dark:bg-very-dark-blue-dm ">
       <Header />
       <section className=" px-4">
        <div className=" md:flex justify-between">
