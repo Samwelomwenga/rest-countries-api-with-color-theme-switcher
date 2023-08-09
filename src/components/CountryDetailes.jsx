@@ -58,62 +58,67 @@ const CountryDetailes = () => {
               <img src={item.flags.svg} alt={item.name.common} />
             </div>
             <div className="d">
-            <h2 className=" font-semibold text-xl my-5">{item.name.common}</h2>
-            <div className=" md:flex md:gap-20">
-            <ul className=" grid gap-1.5 mb-5">
-              <li>
-                Native Name:
-                <span className="pl-1">
-                  {Object.values(item.name.nativeName)[0].common}
-                </span>
-              </li>
-              <li>
-                Population:
-                <span className="pl-1">{item.population.toLocaleString()}</span>
-              </li>
-              <li>
-                Region:<span className="pl-1">{item.region}</span>
-              </li>
-              <li>
-                Sub Region:<span className="pl-1">{item.subregion}</span>
-              </li>
-              <li>
-                Capital:<span className="pl-1">{item.capital}</span>
-              </li>
-            </ul>
-            <ul className=" mb-7 grid gap-1.5">
-              <li>
-                Top Level Domain:<span className="pl-1">{item.tld[0]}</span>
-              </li>
-              <li>
-                Currencies:
-                <span className="pl-1">
-                  {Object.values(item.currencies)[0].name}
-                </span>
-              </li>
-              <li>
-                Languages:
-                <span className="pl-1">
-                  {Object.values(item.languages).join(", ")}
-                </span>
-              </li>
-            </ul>
-            
-            </div>
-            <div className=" md:flex md:items-center md:text-center md:gap-4">
-            <p className=" md:text-center">Border Countries:</p>
-            <ul className=" grid gap-3  pt-5 pb-8 grid-cols-4 md:flex">
-              {" "}
-              {item.borders.map((border, index) => (
-                <li
-                  key={index}
-                  className=" bg-white dark:bg-dark-blue py-0.5 px-1 text-center shadow-md rounded md:py-1 md:px-5 md:my-0 md:mx-1"
-                >
-                  <Link to={`/${item.name.common}`}>{border}</Link>
-                </li>
-              ))}
-            </ul>
-            </div>
+              <h2 className=" font-semibold text-xl my-5">
+                {item.name.common}
+              </h2>
+              <div className=" md:flex md:gap-20">
+                <ul className=" grid gap-1.5 mb-5">
+                  <li>
+                    Native Name:
+                    <span className="pl-1">
+                      {Object.values(item.name.nativeName)[0].common}
+                    </span>
+                  </li>
+                  <li>
+                    Population:
+                    <span className="pl-1">
+                      {item.population.toLocaleString()}
+                    </span>
+                  </li>
+                  <li>
+                    Region:<span className="pl-1">{item.region}</span>
+                  </li>
+                  <li>
+                    Sub Region:<span className="pl-1">{item.subregion}</span>
+                  </li>
+                  <li>
+                    Capital:<span className="pl-1">{item.capital}</span>
+                  </li>
+                </ul>
+                <ul className=" mb-7 grid gap-1.5">
+                  <li>
+                    Top Level Domain:<span className="pl-1">{item.tld[0]}</span>
+                  </li>
+                  <li>
+                    Currencies:
+                    <span className="pl-1">
+                      {Object.values(item.currencies)[0].name}
+                    </span>
+                  </li>
+                  <li>
+                    Languages:
+                    <span className="pl-1">
+                      {Object.values(item.languages).join(", ")}
+                    </span>
+                  </li>
+                </ul>
+              </div>
+              <div className=" md:flex md:items-center md:text-center md:gap-4">
+                <p className=" md:text-center">Border Countries:</p>
+                <ul className=" grid gap-3  pt-5 pb-8 grid-cols-4 md:flex">
+                  {" "}
+                  {item.borders
+                    ? item.borders.map((border, index) => (
+                        <li
+                          key={index}
+                          className=" bg-white dark:bg-dark-blue py-0.5 px-1 text-center shadow-md rounded md:py-1 md:px-5 md:my-0 md:mx-1"
+                        >
+                          <Link to={`/${item.name.common}`}>{border}</Link>
+                        </li>
+                      ))
+                    : "_"}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
