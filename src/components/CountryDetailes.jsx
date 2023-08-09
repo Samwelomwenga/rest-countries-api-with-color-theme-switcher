@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
+import { Borderlink } from "./Borderlink";
 
 const CountryDetailes = () => {
   const [country, setCountry] = useState([]);
@@ -108,12 +109,7 @@ const CountryDetailes = () => {
                   {" "}
                   {item.borders
                     ? item.borders.map((border, index) => (
-                        <li
-                          key={index}
-                          className=" bg-white dark:bg-dark-blue py-0.5 px-1 text-center shadow-md rounded md:py-1 md:px-5 md:my-0 md:mx-1"
-                        >
-                          <Link to={`/${item.name.common}`}>{border}</Link>
-                        </li>
+                        <Borderlink key={index} item={item} border={border} />
                       ))
                     : "_"}
                 </ul>
