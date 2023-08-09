@@ -1,13 +1,13 @@
 import{Link}  from 'react-router-dom';
 import PropsType from 'prop-types';
-function CountriesList({ CountryList, error, loading}) {
+function CountriesList({ CountryList, error, loading,lastCountryElementRef,pageNumber}) {
 
   return (
     <>
-    {loading && <p>Loading...</p>}
+    {loading && <p>Loading...{pageNumber}</p>}
     {error && <p>Something went wrong: {error.message}</p>}
-      {CountryList.map((country) => (
-        <Link key={country.name.common} to={`/${country.name.common}`}>
+      {CountryList.map((country,index) => (
+        CountriesList.length === index+1?( <Link key={index} to={`/${country.name.common}`} ref={lastCountryElementRef}>
         <div className=" bg-white  dark:bg-dark-blue mb-7 rounded-md mx-10 shadow-md overflow-hidden md:mt-5" >
           <img className="w-full" src={country.flags?.svg} alt={country.name} />
           <h2 className=" py-3 pl-5 font-extrabold">{country.name.common}</h2>
@@ -17,7 +17,18 @@ function CountriesList({ CountryList, error, loading}) {
           <p>Capital:{' '}<span className=" text-sm text-very-dark-grey dark:text-very-light-greyy">{country.capital}</span></p>
          </div>
         </div>
-        </Link>
+        </Link>):(        <Link key={index} to={`/${country.name.common}`}>
+        <div className=" bg-white  dark:bg-dark-blue mb-7 rounded-md mx-10 shadow-md overflow-hidden md:mt-5" >
+          <img className="w-full" src={country.flags?.svg} alt={country.name} />
+          <h2 className=" py-3 pl-5 font-extrabold">{country.name.common}</h2>
+         <div className=" grid gap-0.5 pb-9 pl-5">
+         <p>Population:{' '}<span className=" text-sm text-very-dark-grey dark:text-very-light-grey">{country.population}</span></p>
+          <p>Region:{' '}<span className=" text-sm text-very-dark-grey dark:text-very-light-grey">{country.region}</span></p>
+          <p>Capital:{' '}<span className=" text-sm text-very-dark-grey dark:text-very-light-greyy">{country.capital}</span></p>
+         </div>
+        </div>
+        </Link>)
+
       ))}
     </>
   );
@@ -34,11 +45,15 @@ CountriesList.propTypes = {
   ),
   error: PropsType.shape({ message: PropsType.string }),
   loading: PropsType.bool,
+  lastCountryElementRef:PropsType.object,
+  pageNumber:PropsType.number,
 };
 CountriesList.defaultProps = {
   CountriesList: [],
   error: null,
   loading: false,
+  lastCountryElementRef:null,
+  pageNumber:1,
 }
 
 export default CountriesList;

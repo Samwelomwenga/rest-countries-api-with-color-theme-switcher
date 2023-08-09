@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef,useCallback } from "react";
 import axios from "axios";
 import Header from "../components/Header";
 import CountriesList from "../components/CountriesList";
@@ -11,9 +11,25 @@ export const Home = () => {
   const [region, setRegion] = useState("");
   const [error, setError] = useState(null);
    const [loading, setLoading] = useState(false);
+   const [hasMore, setHasMore] = useState(false);
+   const [pageNumber, setPageNumber] = useState(1);
+
+   const observer = useRef();
+    const lastCountryElementRef = useCallback(node => {
+      if (loading) return
+      if (observer.current) observer.current.disconnect()
+      observer.current = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && hasMore) {
+          setPageNumber(prevPageNumber => prevPageNumber + 1)
+        }
+      })
+      if (node) observer.current.observe(node)
+    }, [loading, hasMore])
+
 
    const handleSearchCountries = (searchValue) => {
     setSearchTerm(searchValue);
+    setPageNumber(1);
     if (!searchTerm) {
       setCountryList(CountryList);
     }else{
@@ -48,6 +64,8 @@ export const Home = () => {
           if (!ignore) {
             setCountryList(response.data);
             setError(null);
+            setHasMore(response.data.length > 0);
+            setLoading(false);
             }
       } catch (error) {
           setError(error);
@@ -61,7 +79,7 @@ export const Home = () => {
       ignore=true;
     }
 
-  },[])
+  },[hasMore])
   return (
     <main className=" text-very-dark-blue dark:text-white bg-very-light-grey dark:bg-very-dark-blue-dm ">
       <Header />
@@ -71,7 +89,7 @@ export const Home = () => {
         <RegionFilter region={region} handleSearchRegion={handleSearchRegion} />
        </div>
         <section className=" md:grid grid-cols-4">
-          <CountriesList error={error} loading={loading} CountryList={CountryList}/>
+          <CountriesList error={error} loading={loading} CountryList={CountryList} lastCountryElementRef={lastCountryElementRef} pageNumber={pageNumber}/>
         </section>
       </section>
     </main>

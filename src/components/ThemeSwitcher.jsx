@@ -19,7 +19,7 @@ const ThemeSwitcher = () => {
   return (
     <button className="flex gap-3" onClick={handleThemeToggle}>
       {theme ==='dark' ?<FontAwesomeIcon icon={faMoon} size="lg" />:<FontAwesomeIcon icon={faMoon} size="lg" style={{color: "#020c26",}} />}
-      <p>Dark Mode</p>
+      <p>{theme==="dark"?"dark":"light"} Mode</p>
     </button>
   );
 };
