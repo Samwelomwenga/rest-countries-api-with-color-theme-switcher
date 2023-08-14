@@ -105,11 +105,11 @@ const CountryDetailes = () => {
               </div>
               <div className=" md:flex md:items-center md:text-center md:gap-4">
                 <p className=" md:text-center">Border Countries:</p>
-                <ul className=" grid gap-3  pt-5 pb-8 grid-cols-4 md:flex">
+                <ul className=" grid gap-3  pt-5 pb-8 grid-cols-4 md:gap-2">
                   {" "}
                   {item.borders
                     ? item.borders.map((border, index) => (
-                        <Borderlink key={index} item={item} border={border} />
+                        <Borderlink key={index}  border={border} />
                       ))
                     : "_"}
                 </ul>
