@@ -31,7 +31,7 @@ export const Borderlink = ({ index, item, border }) => {
     <>
       <li
         key={index}
-        className=" bg-white dark:bg-dark-blue py-0.5 px-1 text-center shadow-md rounded md:py-1 md:px-5 md:my-0 md:mx-1"
+        className=" bg-white dark:bg-dark-blue  whitespace-nowrap py-0.5 px-1 text-center shadow-md rounded md:py-1 md:px-5 md:my-0 md:mx-1"
       >
        {border&&( <Link to={`/${item.name.common}`}>{borderNames.name&&borderNames.name.common}</Link>)}
       </li>
