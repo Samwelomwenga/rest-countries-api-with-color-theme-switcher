@@ -1,25 +1,24 @@
-import { useState, useEffect } from "react";
+import { useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 const ThemeSwitcher = () => {
-  const [theme, setTheme] = useState(null);
+  const themeRef=useRef(null)
   useEffect(() => {
-    window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? setTheme("dark")
-      : setTheme("light");
+    themeRef.current=window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+      document.documentElement.classList.toggle("dark",themeRef.current==="dark")
   }, []);
-  useEffect(() => {
-    theme === "dark"
-      ? document.documentElement.classList.add("dark")
-      : document.documentElement.classList.remove("dark");
-  }, [theme]);
+ 
   const handleThemeToggle = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    const newTheme=themeRef.current==="dark"?"light":"dark";
+    themeRef.current=newTheme;
+    document.documentElement.classList.toggle("dark",newTheme==="dark");
   }
   return (
     <button className="flex gap-3" onClick={handleThemeToggle}>
-      {theme ==='dark' ?<FontAwesomeIcon icon={faMoon} size="lg" />:<FontAwesomeIcon icon={faMoon} size="lg" style={{color: "#020c26",}} />}
-      <p>{theme==="dark"?"dark":"light"} Mode</p>
+      {themeRef.current ==='dark' ?<FontAwesomeIcon icon={faMoon} size="lg" />:<FontAwesomeIcon icon={faMoon} size="lg" style={{color: "#020c26",}} />}
+      <p>{themeRef.current==="dark"?"dark":"light"} Mode</p>
     </button>
   );
 };
