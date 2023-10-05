@@ -1,14 +1,14 @@
-import { useRef, useEffect } from "react";
+import { useRef,  } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 const ThemeSwitcher = () => {
   const themeRef=useRef(null)
-  useEffect(() => {
+  
     themeRef.current=window.matchMedia("(prefers-color-scheme: dark)").matches
       ? "dark"
       : "light";
       document.documentElement.classList.toggle("dark",themeRef.current==="dark")
-  }, []);
+  
  
   const handleThemeToggle = () => {
     const newTheme=themeRef.current==="dark"?"light":"dark";

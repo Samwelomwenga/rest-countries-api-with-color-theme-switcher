@@ -1,13 +1,13 @@
 import{Link}  from 'react-router-dom';
 import PropsType from 'prop-types';
-function CountriesList({ CountryList, error, loading,lastCountryElementRef,pageNumber}) {
+function CountriesList({ CountryList, error, loading,}) {
 
   return (
     <>
-    {loading && <p>Loading...{pageNumber}</p>}
+    {loading && <p>Loading...</p>}
     {error && <p>Something went wrong: {error.message}</p>}
       {CountryList.map((country,index) => (
-        <Link key={index} to={`/${country.name.common}`} ref={lastCountryElementRef}>
+        <Link key={index} to={`/${country.name.common}`}>
         <div className=" bg-white  dark:bg-dark-blue mb-7  rounded-md mx-10 shadow-md overflow-hidden md:mt-5" >
           <img className="w-full h-40" src={country.flags?.svg} alt={country.name} />
           <h2 className=" py-3 pl-5 font-extrabold">{country.name.common}</h2>
