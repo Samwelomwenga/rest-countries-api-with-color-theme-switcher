@@ -1,11 +1,13 @@
 import{Link}  from 'react-router-dom';
 import PropsType from 'prop-types';
+import Spinner from './Spinner';
+
 function CountriesList({countries,loading,error}) {
 
 
   return (
     <>
-    {loading && <p>Loading...</p>}
+    {loading && <Spinner/>}
     {error && <p>Something went wrong: {error.message}</p>}
       {countries.map((country,index) => (
         <Link key={index} to={`/${country.name.common}`}>
@@ -13,9 +15,9 @@ function CountriesList({countries,loading,error}) {
           <img className="w-full h-40" src={country.flags?.svg} alt={country.name} />
           <h2 className=" py-3 pl-5 font-extrabold">{country.name.common}</h2>
          <div className=" grid gap-0.5 pb-9 pl-5">
-         <p>Population:{' '}<span className=" text-sm text-very-dark-grey dark:text-very-light-grey">{country.population}</span></p>
+         <p>Population:{' '}<span className=" text-sm text-very-dark-grey dark:text-very-light-grey">{country.population.toLocaleString()}</span></p>
           <p>Region:{' '}<span className=" text-sm text-very-dark-grey dark:text-very-light-grey">{country.region}</span></p>
-          <p>Capital:{' '}<span className=" text-sm text-very-dark-grey dark:text-very-light-greyy">{country.capital}</span></p>
+          <p>Capital:{' '}<span className=" text-sm text-very-dark-grey dark:text-very-light-grey">{country.capital}</span></p>
          </div>
         </div>
         </Link>
