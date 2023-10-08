@@ -1,8 +1,6 @@
 import{Link}  from 'react-router-dom';
-import useFetch from '../utils/hooks/useFetch';
 import PropsType from 'prop-types';
-function CountriesList() {
-const {countries,loading,error}=useFetch('https://restcountries.com/v3.1/all');
+function CountriesList({countries,loading,error}) {
 
 
   return (
@@ -25,28 +23,19 @@ const {countries,loading,error}=useFetch('https://restcountries.com/v3.1/all');
       ))}
     </>
   );
+} 
+CountriesList.propTypes={
+  countries:PropsType.array.isRequired,
+  loading:PropsType.bool.isRequired,
+  error:PropsType.object,
 }
-CountriesList.propTypes = {
-  CountryList: PropsType.arrayOf(
-    PropsType.shape({
-      name: PropsType.shape({ common: PropsType.string }),
-      flags: PropsType.shape({ svg: PropsType.string }),
-      population: PropsType.number,
-      region: PropsType.string,
-      capital: PropsType.string,
-    })
-  ),
-  error: PropsType.shape({ message: PropsType.string }),
-  loading: PropsType.bool,
-  lastCountryElementRef:PropsType.object,
-  pageNumber:PropsType.number,
-};
-CountriesList.defaultProps = {
-  CountriesList: [],
-  error: null,
-  loading: false,
-  lastCountryElementRef:null,
-  pageNumber:1,
+CountriesList.defaultProps={
+  countries:[],
+  loading:false,
+  error:null,
 }
+
+
+
 
 export default CountriesList;

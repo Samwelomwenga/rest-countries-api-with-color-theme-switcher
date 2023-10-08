@@ -3,8 +3,11 @@ import Header from "../components/Header";
 import CountriesList from "../components/CountriesList";
 import Search from "../components/Search";
 import RegionFilter from "../components/RegionFilter";
+import useFetch from "../utils/hooks/useFetch";
 
 export const Home = () => {
+const [{countries,loading,error},setUrl]=useFetch('https://restcountries.com/v3.1/all');
+
   // const [searchTerm, setSearchTerm] = useState("");
   // const [region, setRegion] = useState("");
   // const [error, setError] = useState(null);
@@ -70,10 +73,10 @@ export const Home = () => {
       <section className=" px-4">
        <div className=" md:flex justify-between">
        <Search />
-        <RegionFilter />
+        <RegionFilter setUrl={setUrl} />
        </div>
         <section className=" md:grid grid-cols-4">
-          <CountriesList/>
+          <CountriesList countries={countries} loading={loading} error={error}/>
         </section>
       </section>
     </main>

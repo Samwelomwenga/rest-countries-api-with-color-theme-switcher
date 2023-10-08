@@ -1,4 +1,4 @@
-import { useReducer,useEffect } from "react";
+import { useReducer,useEffect,useState } from "react";
 import axios from "axios";
 
 import fetchCountriesReducer from "../functions/fetchCountriesReducer";
@@ -8,8 +8,9 @@ const initialState = {
     loading: false,
     error: null,
 };
-const useFetch = (url) => {
+const useFetch = (initialUrl) => {
     const [state, dispatch] = useReducer(fetchCountriesReducer, initialState);
+    const [url,setUrl]=useState(initialUrl);
     useEffect(() => {
         let ignore=false;
         const fetchData = async () => {
@@ -39,6 +40,6 @@ const useFetch = (url) => {
         
     
     }, [url]);
-    return state;
+    return [state,setUrl];
 }
 export default useFetch;
