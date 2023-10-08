@@ -6,7 +6,7 @@ function Search({setUrl} ) {
   const [country, seCountry] = useState("");
   const handleSearchCountry = (country) => {
     seCountry(country);
-    country&&setUrl(`https://restcountries.com/v3.1/name/${country}`);
+    country&&setUrl(`https://restcountries.com/v3.1/name/${country}?fields=name,capital,flags,population,region`);
   }
 
   return (

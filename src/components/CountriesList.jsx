@@ -8,7 +8,7 @@ function CountriesList({countries,loading,error}) {
   return (
     <>
     {loading && <Spinner/>}
-    {error && <p>Something went wrong: {error.message}</p>}
+    {error && <p className=' text-center text-2xl'>Something went wrong: {error.message}</p>}
       {countries.map((country,index) => (
         <Link key={index} to={`/${country.name.common}`}>
         <div className=" bg-white  dark:bg-dark-blue mb-7  rounded-md mx-10 shadow-md overflow-hidden md:mt-5" >

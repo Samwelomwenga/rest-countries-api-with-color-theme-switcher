@@ -4,7 +4,7 @@ function RegionFilter({setUrl}) {
   const [region, setRegion] = useState("");
   const handleSearchRegion = (region) => {
     setRegion(region);
-    region&&setUrl(`https://restcountries.com/v3.1/region/${region}`);
+    region&&setUrl(`https://restcountries.com/v3.1/region/${region}?fields=name,capital,flags,population,region`);
 
   }
 
