@@ -72,7 +72,7 @@ const [{countries,loading,error},setUrl]=useFetch('https://restcountries.com/v3.
       <Header />
       <section className=" px-4">
        <div className=" md:flex justify-between">
-       <Search />
+       <Search setUrl={setUrl} />
         <RegionFilter setUrl={setUrl} />
        </div>
         <section className=" md:grid grid-cols-4">
