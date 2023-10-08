@@ -1,12 +1,15 @@
 import{Link}  from 'react-router-dom';
+import useFetch from '../utils/hooks/useFetch';
 import PropsType from 'prop-types';
-function CountriesList({ CountryList, error, loading,}) {
+function CountriesList() {
+const {countries,loading,error}=useFetch('https://restcountries.com/v3.1/all');
+
 
   return (
     <>
     {loading && <p>Loading...</p>}
     {error && <p>Something went wrong: {error.message}</p>}
-      {CountryList.map((country,index) => (
+      {countries.map((country,index) => (
         <Link key={index} to={`/${country.name.common}`}>
         <div className=" bg-white  dark:bg-dark-blue mb-7  rounded-md mx-10 shadow-md overflow-hidden md:mt-5" >
           <img className="w-full h-40" src={country.flags?.svg} alt={country.name} />

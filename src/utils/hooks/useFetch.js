@@ -4,7 +4,7 @@ import axios from "axios";
 import fetchCountriesReducer from "../functions/fetchCountriesReducer";
 
 const initialState = {
-    data: [],
+    countries: [],
     loading: false,
     error: null,
 };
