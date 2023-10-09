@@ -13,7 +13,7 @@ function CountriesList({countries,loading,error}) {
       {countries.map((country,index) => (
         <Link key={index} to={`/${country.name.common}`}>
         <div className=" bg-white  dark:bg-dark-blue mb-7  rounded-md mx-10 shadow-md overflow-hidden md:mt-5" >
-          <img className="w-full h-40" src={country.flags?.svg} alt={country.name} />
+          <img className="w-full h-40" src={country.flags?.svg} loading='lazy' alt={country.name} />
           <h2 className=" py-3 pl-5 font-extrabold">{country.name.common}</h2>
          <div className=" grid gap-0.5 pb-9 pl-5">
          <p>Population:{' '}<span className=" text-sm text-very-dark-grey dark:text-very-light-grey">{country.population.toLocaleString()}</span></p>
