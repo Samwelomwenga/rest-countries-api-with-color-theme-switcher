@@ -6,7 +6,6 @@ import useFetch from "../utils/hooks/useFetch";
 
 export const Home = () => {
 const [{countries,loading,error},setUrl]=useFetch('https://restcountries.com/v3.1/all?fields=name,capital,flags,population,region');
-console.log(countries)
   
   return (
     <main className=" text-very-dark-blue dark:text-white bg-very-light-grey dark:bg-very-dark-blue-dm ">

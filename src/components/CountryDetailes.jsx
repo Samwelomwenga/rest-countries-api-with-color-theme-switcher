@@ -1,38 +1,43 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeftLong } from "@fortawesome/free-solid-svg-icons";
 import { Borderlink } from "./Borderlink";
+import Spinner from "./Spinner";
+// import useFetch from "../utils/hooks/useFetch";
+import useFetchCountry from "../utils/hooks/useFetchCountry";
+
 
 const CountryDetailes = () => {
-  const [country, setCountry] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [country, setCountry] = useState([]);
+  // const [error, setError] = useState(null);
+  // const [loading, setLoading] = useState(false);
   const { name } = useParams();
-  useEffect(() => {
-    let ignore = false;
-    const fetchCountry = async () => {
-      setLoading(true);
-      try {
-        const response = await fetch(
-          `https://restcountries.com/v3.1/name/${name}`
-        );
-        const countryData = await response.json();
-        if (!ignore) {
-          setCountry(countryData);
-          setError(null);
-        }
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchCountry();
-    return () => {
-      ignore = true;
-    };
-  }, [name]);
+  // const [{countries,loading,error}] = useFetch(`https://restcountries.com/v3.1/name/${name}`);
+  const [{countries,loading,error}]=useFetchCountry("https://restcountries.com/v3.1/name/",name);
+  // useEffect(() => {
+  //   let ignore = false;
+  //   const fetchCountry = async () => {
+  //     setLoading(true);
+  //     try {
+  //       const response = await fetch(
+  //         `https://restcountries.com/v3.1/name/${name}`
+  //       );
+  //       const countryData = await response.json();
+  //       if (!ignore) {
+  //         setCountry(countryData);
+  //         setError(null);
+  //       }
+  //     } catch (error) {
+  //       setError(error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+  //   fetchCountry();
+  //   return () => {
+  //     ignore = true;
+  //   };
+  // }, [name]);
 
   const navigate = useNavigate();
   const handleButtonClick = () => {
@@ -41,9 +46,9 @@ const CountryDetailes = () => {
 
   return (
     <>
-      {loading && <p>Loading...</p>}
+      {loading && <Spinner/>}
       {error && <p>Something went wrong: {error.message}</p>}
-      {country.map((item) => (
+      {countries&&countries.map((item) => (
         <div className=" px-12  md:pt-8" key={item.name.common}>
           <button
             className="bg-white dark:bg-dark-blue py-1 px-4 rounded shadow-md text-center font-light my-8"
