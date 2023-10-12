@@ -1,25 +1,46 @@
-import { useRef,  } from "react";
+import { useReducer, } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
+
+import switchThemeReducer from "../utils/functions/switchThemeReducer";
+
+const initialState = {
+  theme: window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light",
+};
+console.log(initialState)
 const ThemeSwitcher = () => {
-  const themeRef=useRef(null)
-  
-    themeRef.current=window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-      document.documentElement.classList.toggle("dark",themeRef.current==="dark")
-  
- 
-  const handleThemeToggle = () => {
-    const newTheme=themeRef.current==="dark"?"light":"dark";
-    themeRef.current=newTheme;
-    document.documentElement.classList.toggle("dark",newTheme==="dark");
-  }
+  // useEffect(() => {
+  // window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")
+  // }, [])
+  const [state, dispatch] = useReducer(switchThemeReducer, initialState);
+  const handleThemeToggle = (event) => {
+    dispatch({
+      type: "SWITCH_THEME",
+      payload: event.target.value === "on" ? "light" : "dark",
+    });
+    document.documentElement.classList.toggle("dark", state.theme === "dark");
+
+  };
   return (
-    <button className="flex gap-3" onClick={handleThemeToggle}>
-      {themeRef.current ==='dark' ?<FontAwesomeIcon icon={faMoon} size="lg" />:<FontAwesomeIcon icon={faMoon} size="lg" style={{color: "#020c26",}} />}
-      <p>{themeRef.current==="dark"?"dark":"light"} Mode</p>
-    </button>
+    <>
+      <label htmlFor="themeToggle" className="relative">
+        <input
+          // className="hidden"
+          type="checkbox"
+          value={state.theme === "dark" ? "on" : "off"}
+          id="themeToggle"
+          onChange={handleThemeToggle}
+          checked={state.theme === "dark"}
+        />
+        <FontAwesomeIcon
+          icon={faMoon}
+          size="xl"
+          className="absolute top-0 left-0"
+        />
+      </label>
+    </>
   );
 };
 
