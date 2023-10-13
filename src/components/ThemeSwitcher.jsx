@@ -1,26 +1,18 @@
-import { useReducer, } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 
-import switchThemeReducer from "../utils/functions/switchThemeReducer";
+import { useTheme } from "../utils/context/ThemeProvider";
 
-const initialState = {
-  theme: window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light",
-};
-console.log(initialState)
+
+
 const ThemeSwitcher = () => {
-  // useEffect(() => {
-  // window.matchMedia("(prefers-color-scheme: dark)").matches?document.documentElement.classList.add("dark"):document.documentElement.classList.remove("dark")
-  // }, [])
-  const [state, dispatch] = useReducer(switchThemeReducer, initialState);
+  const {state,dispatch}=useTheme()
+  
   const handleThemeToggle = (event) => {
     dispatch({
       type: "SWITCH_THEME",
       payload: event.target.value === "on" ? "light" : "dark",
     });
-    document.documentElement.classList.toggle("dark", state.theme === "dark");
 
   };
   return (
